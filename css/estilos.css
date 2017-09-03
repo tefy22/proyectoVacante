@@ -1,0 +1,30 @@
+
+.container{	
+	padding: 10px;
+	box-sizing: border-box;/*Para no incremente el tamaño*/
+	background: hsla(237, 8%, 91%, 0.7);	
+}
+.campoVacio{
+	color: #D81A1A;
+	display: none;
+	float: right;
+}
+.campoErroneo{
+	color: #FA3B3B;
+	display: none;
+	float: right;
+}
+.correoErroneo{
+	color: #FA3B3B;
+	display: none;
+	float: right;
+}
+label{
+	font-weight: bold;
+}
+.botones{
+	width: 100px;
+}
+.campErr{
+	border: 1px solid red;
+}
