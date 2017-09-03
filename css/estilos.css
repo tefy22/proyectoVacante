@@ -1,8 +1,6 @@
-
 .container{	
 	padding: 10px;
 	box-sizing: border-box;/*Para no incremente el tamaño*/
-	background: hsla(237, 8%, 91%, 0.7);	
 }
 .campoVacio{
 	color: #D81A1A;
