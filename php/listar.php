@@ -32,7 +32,7 @@
 		}else{
 			echo "No se encontro ningun dato";
 		}
-
+		mysqli_free_result($resultado);
 	}else{
 		echo "Error en la conexion";
 		$con->cerrarConexion();

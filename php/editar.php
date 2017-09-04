@@ -20,6 +20,7 @@
 			$con->actualizarDatos($cedula, $nombres, $apellidos, $correo, $telefono);
 			echo "Datos Actualizados!!";
 		}
+		mysqli_free_result($res);
 	}else{
 		echo "Error en la conexion";
 		$con->cerrarConexion();

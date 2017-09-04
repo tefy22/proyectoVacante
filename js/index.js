@@ -22,8 +22,22 @@ function limpiarCampos(){
 	$("#phone").val("");
 }
 
+$(document).ready(function () {
+	$("#btnGuardar").click(function(){
+		$("input").trigger("blur");
+		var ced= $("#ced").val();
+		var nombres= $("#names").val();
+		var apellidos= $("#surnames").val();
+		var correo= $("#email").val();
+		var tel= $("#phone").val();
 
-$(document).ready(function () {	
+		if (($("input").hasClass("campErr")) || nombres.trim().length==0 || apellidos.trim().length==0){
+			event.preventDefault();
+			alert("Debes completar bien los campos!!");
+		}else{
+			peticionAjax('php/conectar.php',{ced:ced, names:nombres, surnames:apellidos, email:correo, phone:tel});
+		}
+	});
 
 	$("#btnEditar").click(function(){
 		var ced= $("#ced").val();
@@ -32,7 +46,7 @@ $(document).ready(function () {
 		var correo= $("#email").val();
 		var tel= $("#phone").val();
 
-		if (nombres.trim().length==0 || apellidos.trim().length==0 || ced=="" || tel=="" || correo==""){
+		if (($("input").hasClass("campErr")) || nombres.trim().length==0 || apellidos.trim().length==0){
 			event.preventDefault();
 			alert("Debes completar bien los campos!!");
 		}else{
@@ -53,36 +67,6 @@ $(document).ready(function () {
 		});		
 	});
 
-	$("#btnGuardar").click(function(event){
-		$("input").trigger("blur");
-		var ced= $("#ced").val();
-		var nombres= $("#names").val();
-		var apellidos= $("#surnames").val();
-		var correo= $("#email").val();
-		var tel= $("#phone").val();
-
-		if (nombres.trim().length==0 || apellidos.trim().length==0 || ced=="" || tel=="" || correo==""){
-			event.preventDefault();
-			alert("Debes completar bien los campos!!");
-		}else{
-			peticionAjax('php/conectar.php',{ced:ced, names:nombres, surnames:apellidos, email:correo, phone:tel});
-		}	
-	});
-
-	$("#ced, #phone").blur(function(){
-		if (isNaN($("#ced").val()) || isNaN($("#phone").val())) {
-			$(this).siblings(".campoErroneo").css("display","block");
-			$(this).addClass("campErr");
-		}else{
-			$(this).removeClass("campErr");
-		}				
-	});
-
-	$("input").focus(function(){
-		$(this).siblings(".campoErroneo").css("display","none");
-		$(this).removeClass("campErr");
-	});
-
 	$("#email").blur(function(){
 		var validar= $(this).val();
 		if (!validar.includes('@') || !validar.includes('.')){
@@ -93,16 +77,26 @@ $(document).ready(function () {
 			$(this).removeClass("campErr");
 		}
 	});
-	/*
-	$("#btnEditar").click(function(){
-		var cedConsulta= prompt("Digita la cedula:");
-		$("#ced").attr("disabled","true");
-		$("#ced").val(cedConsulta);
 
-		peticionAjax('php/editar.php', {cedConsulta:cedConsulta});
+	$("#ced").blur(function(){
+		if (isNaN($("#ced").val())) {
+			$(this).siblings(".campoErroneo").css("display","block");
+			$(this).addClass("campErr");
+		}else{
+			$(this).removeClass("campErr");
+		}				
+	});
+	$("#phone").blur(function(){
+		if (isNaN($("#phone").val())) {
+			$(this).siblings(".campoErroneo").css("display","block");
+			$(this).addClass("campErr");
+		}else{
+			$(this).removeClass("campErr");
+		}				
+	});
+
+	$("input").focus(function(){
+		$(this).siblings(".campoErroneo").css("display","none");
+		$(this).removeClass("campErr");
 	});	
-	*/
 });
-
-
-

@@ -22,7 +22,9 @@
 		}else{
 			$con->guardarDatos($nombres, $apellidos, $cedula, $correo, $telefono);
 			echo "Datos Guardados!!";
-		}				
+		}
+		mysqli_free_result($res);
+		mysqli_free_result($res2);
 	}else{
 		echo "error en la conexion";
 		$con->cerrarConexion();
